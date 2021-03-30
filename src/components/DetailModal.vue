@@ -7,22 +7,24 @@
     hide-header
   >
     <template #default>
-      <div 
-        v-if="isLoading"
-      >
-        loading
+      <div v-if="isLoading" class="d-flex justify-content-center mb-3">
+        <b-spinner 
+          style="width: 3rem; height: 3rem; color: #e78200;" 
+          label="Loading..."
+        >
+        </b-spinner>
       </div>
-      <div 
+      <div
         v-else
       >
         <div v-if="detailRecipe.thumb" class="text-center mb-3">
-          <img :src="detailRecipe.thumb" alt="thumbnail" class="tes">
-          <h5 class="mt-3 mb-2"><strong>{{item.title.substring(5, item.title.indexOf(','))}}</strong></h5>
-          <p class="mb-0">by: </p>
-          <p class="mt-0">{{detailRecipe.author.user}} - {{detailRecipe.author.datePublished}}</p>
+          <b-img :src="detailRecipe.thumb" alt="thumbnail" fluid></b-img>
         </div>
         <div>
-          <div class="mb-3 text-center">
+          <div class="mb-4 text-center">
+            <h5 class="mt-3 mb-2"><strong>{{item.title.substring(5, item.title.indexOf(','))}}</strong></h5>
+            <p class="mb-0">by: </p>
+            <p class="mt-0">{{detailRecipe.author.user}} - {{detailRecipe.author.datePublished}}</p>
             <strong>Bahan yang dibutuhkan:</strong>
           </div>
           <b-row>
@@ -34,6 +36,7 @@
               class="bahan text-center"
             >
               <p>{{ingredient}}</p>
+              <div class="spacer-cool"></div>
             </b-col>
           </b-row>
         </div>
@@ -46,18 +49,15 @@
             :key="indexS"
             class="text-justify"
           >
-            {{step}}
+            {{step.slice(0, 1) + '.' + step.slice(1)}}
           </p>
         </div>
       </div>
     </template>
 
     <template #modal-footer>
-      <b-button size="sm" variant="warning">
-        Simpan
-      </b-button>
       <b-button size="sm" variant="danger" @click="closeModal">
-        Cancel
+        Tutup
       </b-button>
     </template>
   </b-modal>
@@ -98,7 +98,7 @@ export default {
 
   .bahan {
     border-bottom: 1px solid #e78200;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
 </style>

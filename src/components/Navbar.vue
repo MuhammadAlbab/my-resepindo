@@ -1,43 +1,61 @@
 <template>
-    <div class="container">
-        <b-navbar toggleable="lg" class="bg-transparent">
+    <b-container>
+        <b-navbar 
+            toggleable="lg" 
+            class="bg-transparent"
+        >
             <img 
                 :src="require ('@/assets/croppisau.png')" 
                 alt="Logo" 
             >
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
-            <b-navbar-nav class="ml-auto">
-                <b-nav-item>
-                    <router-link to="/" custom v-slot="{ navigate }">
-                        <span @click="navigate" @keypress.enter="navigate" role="link">
-                            Home
+                <b-navbar-nav class="ml-auto pa-0">
+                    <router-link
+                        v-for="(item,index) in link" 
+                        :key="index"
+                        :to="item.route" custom v-slot="{ navigate }"
+                        class="text-center"
+                    >
+                        <span 
+                            @click="navigate" 
+                            @keypress.enter="navigate" 
+                            role="link"
+                        >
+                            {{item.name}}
                         </span>
                     </router-link>
-                </b-nav-item>
-                <b-nav-item>
-                    <router-link to="/resep" custom v-slot="{ navigate }">
-                        <span @click="navigate" @keypress.enter="navigate" role="link">
-                            Resep
-                        </span>
-                    </router-link>
-                </b-nav-item>
-            </b-navbar-nav>
+                </b-navbar-nav>
             </b-collapse>
         </b-navbar>
-    </div>
+    </b-container>
 </template>
 
 <script>
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    data(){
+        return {
+            link: [
+                {name: 'Home', route: '/'},
+                {name: 'Resep', route: '/resep'},
+                {name: 'Favorite', route: '/favorite'},
+            ]
+        }
+    },
 }
 </script>
 
 <style scoped>
 
     span {
-        margin-left: 5px;
+        margin-left: 25px;
+        font-size: 18px;
+    }
+
+    span:hover{
+        cursor: pointer;
+        color: #e78200;
     }
    
 </style>

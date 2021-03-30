@@ -1,0 +1,145 @@
+<template>
+    <section class="content">
+        <template v-if="items.length == 0">
+            <b-spinner 
+                style="width: 3rem; height: 3rem; color: #e78200;" 
+                label="Loading..."
+            >
+            </b-spinner>
+        </template>
+        <template>
+            <b-card
+            v-for="(item, index) in items" :key="index"
+            class="card"
+            >
+                <b-row align-h="center" class="mb-2">
+                    <strong>{{item.title.substring(5, item.title.indexOf(','))}}</strong>
+                </b-row>
+                <img 
+                    :src="item.thumb" 
+                    alt="thumbnail"
+                    width="300"
+                >
+                <template #footer>
+                <b-row align-h="start" class="ml-1">
+                    <small class="text-muted">
+                    <b-icon
+                        icon="bar-chart"
+                    >
+                    </b-icon>
+                    {{item.dificulty}}
+                    </small>
+                </b-row>
+                <b-row align-h="start" class="ml-1">
+                    <small class="text-muted">
+                    <b-icon
+                        icon="clock"
+                    >
+                    </b-icon>
+                    {{item.times}}
+                    </small>
+                </b-row>
+                </template>
+                <b-row align-h="end" class=" mt-2">
+                    <b-btn 
+                        class="mb-n5 mr-1"
+                        variant="dark"
+                        v-b-tooltip.hover title="Detail Resep"
+                        @click="detailResep(item, index)"
+                    >
+                        <b-icon 
+                        icon="exclamation-circle" 
+                        animation="fade"
+                        variant="warning"
+                        >
+                        </b-icon>
+                    </b-btn>
+                    <b-btn 
+                        class="mb-n5"
+                        variant="dark"
+                        v-b-tooltip.hover title="Suka"
+                        @click="likeResep(item, index)"
+                    >
+                        <b-icon 
+                        icon="heart" 
+                        animation="fade"
+                        variant="warning"
+                        >
+                        </b-icon>
+                    </b-btn>
+                </b-row>
+            </b-card>
+        </template>
+        
+        <DetailModal 
+            :item="item" 
+            :index="index" 
+            :detailModal="detailModal"
+            @closeModal="closeModal"
+         />
+    </section>
+</template>
+
+<script>
+import DetailModal from '@/components/DetailModal'
+import { mapActions, mapState } from 'vuex'
+export default {
+    name: 'CardRecipe',
+    components: {
+        DetailModal
+    },
+    props: ['items'],
+    data(){
+        return {
+            detailModal: false,
+            item: '',
+            index: ''
+        }
+    },
+    computed: {
+        ...mapState(['favorites'])
+    },
+    methods: {
+        ...mapActions(['getFavorites', 'deleteFromFavorites']),
+
+        detailResep(item, index){
+            this.item = item
+            this.index = index
+            this.detailModal = !this.detailModal
+        },
+
+        closeModal(){
+            this.detailModal = false
+        },
+
+        likeResep(item, index){
+            this.item = item
+            this.index = index
+            if (this.favorites.some(e => e.key === item.key)){
+                const searchKey = this.favorites.find(e => e.key === item.key)
+                alert(`${searchKey.title.substring(5, searchKey.title.indexOf(','))} terhapus`)
+                this.deleteFromFavorites(item.key)
+            }else{
+                this.getFavorites(item)
+            }
+        }
+    },
+}
+</script>
+
+<style scoped>
+
+     .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+     }
+
+    .card {
+        margin-bottom: 50px;
+        margin-right: 10px;
+        border: 1px solid #e78200;
+    }
+
+</style>

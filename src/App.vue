@@ -1,47 +1,43 @@
 <template>
   <div id="app">
     <Navbar />
-      <div class="container">      
-        <router-view/>
-      </div>
+      <b-container>    
+        <transition name="fade">  
+          <router-view/>
+        </transition>
+      </b-container>
+    <Footer />
   </div>
 </template>
 
 
 <script>
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 }
 </script>
 
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
- .main-color{
-   color: #e78200;
- }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s ease-out, transform 0.5s ease;
+  }
+  .fade-enter-active {
+    transition-delay: 0.6s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  .fade-enter-to, .fade-leave {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 </style>
