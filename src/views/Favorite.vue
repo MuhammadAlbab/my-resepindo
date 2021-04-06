@@ -9,6 +9,8 @@
     <section>
       <CardRecipe 
         :items="data"
+        :myTitle="'Hapus'"
+        :myIcon="'trash'"
       />
     </section>
   </div>

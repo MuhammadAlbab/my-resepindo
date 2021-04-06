@@ -15,6 +15,7 @@ export default new Vuex.Store({
     category: [],
     recipesByCategory: [],
     favorites: [],
+    searchRecipes: []
 
   },
 
@@ -42,18 +43,23 @@ export default new Vuex.Store({
 
     setFavorites(state, payload){
       state.favorites.push(payload) 
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
 
     deletedFromFavorites(state, payload){
       state.favorites = payload
-      // localStorage.setItem("cart", JSON.stringify(state.cart));
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
+
+    setSearchRecipes(state, payload){
+      state.searchRecipes = payload
+    }
 
   },
   actions: {
     
     async getRecipes({commit}) {
-      const response = await axios.get(`${corsUrl}${baseUrl}/api/recipes-length/?limit=6`)
+      const response = await axios.get(`${corsUrl}${baseUrl}/api/recipes-length/?limit=9`)
       commit('setRecipes', response.data.results)
     },
 
@@ -86,6 +92,11 @@ export default new Vuex.Store({
         return obj.key !== payload;
       });
       commit('deletedFromFavorites', myArray)
+    },
+
+    async getSearchRecipes({commit}, payload){
+      const response = await axios.get (`${corsUrl}${baseUrl}/api/search/?q=${payload}`)
+      commit('setSearchRecipes', response.data.results)
     },
 
   },

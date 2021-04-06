@@ -11,20 +11,29 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav class="ml-auto pa-0">
-                    <router-link
+                    <!-- <router-link
                         v-for="(item,index) in link" 
                         :key="index"
                         :to="item.route" custom v-slot="{ navigate }"
-                        class="text-center"
+                        class="text-center"                 
                     >
                         <span 
                             @click="navigate" 
                             @keypress.enter="navigate" 
                             role="link"
+                            
                         >
                             {{item.name}}
                         </span>
-                    </router-link>
+                    </router-link> -->
+                    <b-link
+                        v-for="(item,index) in link" 
+                        :key="index"
+                        :to="item.route"
+                        class="text-center"
+                    >
+                        {{item.name}}
+                    </b-link>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -48,7 +57,7 @@ export default {
 
 <style scoped>
 
-    span {
+    /* span {
         margin-left: 25px;
         font-size: 18px;
     }
@@ -56,6 +65,21 @@ export default {
     span:hover{
         cursor: pointer;
         color: #e78200;
+    } */
+
+    ul a {
+        margin-left: 25px;
+        font-size: 18px;
+        color: black;
+        text-decoration: none;
     }
-   
+
+    a:hover {
+        cursor: pointer;
+        color: #e78200;
+    }
+
+    .router-link-exact-active {
+        color: #e78200;
+    }
 </style>

@@ -19,6 +19,11 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  async created(){
+    if ('favorites' in localStorage){
+      this.$store.state.favorites = JSON.parse(localStorage.getItem('favorites'))
+    }
   }
 }
 </script>

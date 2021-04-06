@@ -57,7 +57,7 @@
 
     <template #modal-footer>
       <b-button size="sm" variant="danger" @click="closeModal">
-        Tutup
+        TUTUP
       </b-button>
     </template>
   </b-modal>

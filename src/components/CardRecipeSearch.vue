@@ -1,16 +1,8 @@
 <template>
     <section class="content">
-        <template v-if="items.length == 0">
-            <b-spinner 
-                style="width: 3rem; height: 3rem; color: #e78200;" 
-                label="Loading..."
-                class="mb-3"
-            >
-            </b-spinner>
-        </template>
         <template>
             <b-card
-            v-for="(item, index) in items" :key="index"
+            v-for="(item, index) in items.slice(0, 12)" :key="index"
             class="card"
             >
                 <b-row align-h="center" class="mb-2">
@@ -28,7 +20,7 @@
                         icon="bar-chart"
                     >
                     </b-icon>
-                    {{item.dificulty}}
+                    {{item.difficulty}}
                     </small>
                 </b-row>
                 <b-row align-h="start" class="ml-1">
@@ -85,7 +77,7 @@
 import DetailModal from '@/components/DetailModal'
 import { mapActions, mapState } from 'vuex'
 export default {
-    name: 'CardRecipe',
+    name: 'CardRecipeSearch',
     components: {
         DetailModal,
         

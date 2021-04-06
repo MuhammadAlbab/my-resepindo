@@ -11,23 +11,26 @@
                     md="4"
                     class="mb-3"
                 >
-                    <div>my-resepindo</div>
-                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, hic.</div>
+                    <div>Tentang Kami</div>
+                    <div>my-resepindo hadir sebagai platform penyedia resep-resep favorite untuk keluarga indonesia</div>
                 </b-col>
                 <b-col
                     cols="12"
                     md="4"
                     class="mb-3"
                 >
-                    <div>my-resepindo</div>
-                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, hic.</div>
+                    <div>Hubungi Kami</div>
+                    <div>Instagram</div>
+                    <div>Facebook</div>
+                    <div>Twitter</div>
+                    <div>Email</div>
                 </b-col>
                 <b-col
                     cols="12"
                     md="4"
                     class="mb-3"
                 >
-                    <div>my-resepindo</div>
+                    <div>Dukung Kami</div>
                     <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, hic.</div>
                 </b-col>
             </b-row>

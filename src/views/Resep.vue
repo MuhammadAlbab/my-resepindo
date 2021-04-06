@@ -1,8 +1,8 @@
 <template>
   <div>
-    <section class="mt-3 mb-3">
+    <section class="mt-3">
       <b-row align-h="center">
-        <h2>Terbaru</h2>
+        <h2 class="mb-3">Kumpulan Resep Terbaru</h2>
       </b-row>
       <b-row align-h="center">
         <b-col cols="12">
@@ -38,6 +38,7 @@
               <b-btn 
                 variant="transparent"
                 v-b-tooltip.hover title="Suka"
+                @click="likeResep(item, index)"
               >
                 <b-icon 
                   icon="heart" 
@@ -52,9 +53,9 @@
       </b-row>
     </section>
 
-    <section>
+    <section class="mt-5">
       <b-row align-h="center">
-        <h2>Kategori</h2>
+        <h2 class="mb-3">Telusuri Berdasarkan Kategori</h2>
       </b-row>
       <b-row align-h="center">
           <b-card
@@ -113,11 +114,11 @@ import DetailModal from '@/components/DetailModal'
     },
     computed: {
 
-      ...mapState(['newRecipes', 'category']),
+      ...mapState(['newRecipes', 'category', 'favorites']),
 
     },
     methods: {
-      ...mapActions(['getNewRecipes', 'getCategory']),
+      ...mapActions(['getNewRecipes', 'getCategory', 'getFavorites', 'deleteFromFavorites']),
       /* eslint-disable */
       onSlideStart(slide) {
         this.sliding = true
@@ -131,6 +132,27 @@ import DetailModal from '@/components/DetailModal'
         this.item = item
         this.index = index
         this.detailModal = !this.detailModal
+      },
+
+      likeResep(item, index){
+            this.item = item
+            this.index = index
+            if (this.favorites.some(e => e.key === item.key)){
+                const searchKey = this.favorites.find(e => e.key === item.key)
+                this.$bvToast.toast('Resep Ini Berhasil Dihapus', {
+                    title: searchKey.title.substring(5, searchKey.title.indexOf(',')),
+                    variant: 'danger',
+                    solid: true
+                })
+                this.deleteFromFavorites(item.key)
+            }else{
+                this.$bvToast.toast('Resep Ini Berhasil Disimpan', {
+                      title: item.title.substring(5, item.title.indexOf(',')),
+                      variant: 'warning',
+                      solid: true
+                  })
+                this.getFavorites(item)
+            }
       },
 
       closeModal(){
@@ -155,12 +177,14 @@ import DetailModal from '@/components/DetailModal'
   .category-card{
     width: 340px;
     border: 1px solid rgba(231, 130, 0, .8);
+    transition: .4s ease-in-out;
   }
 
   .category-card:hover{
+    transition: .4s ease-in-out;
     cursor: pointer;
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .category-card img {

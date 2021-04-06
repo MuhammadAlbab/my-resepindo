@@ -9,8 +9,22 @@
     <section>
         <CardRecipe 
             :items="recipesByCategory.slice(1)"
+            :myTitle="'Suka'"
+            :myIcon="'heart'"
         />
     </section>
+
+    <section class="text-center">
+      <router-link to="/resep" custom v-slot="{ navigate }">
+        <b-btn 
+          pill variant="outline-dark"
+          @click="navigate"
+        >
+          Lihat Lebih Banyak
+        </b-btn>
+      </router-link>
+    </section>
+    
   </div>
 </template>
 
