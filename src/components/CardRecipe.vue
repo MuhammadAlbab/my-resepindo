@@ -14,7 +14,7 @@
             class="card"
             >
                 <b-row align-h="center" class="mb-2">
-                    <strong>{{item.title.substring(5, item.title.indexOf(','))}}</strong>
+                    <strong>{{theTitle(item.title)}}</strong>
                 </b-row>
                 <img 
                     :src="item.thumb" 
@@ -84,6 +84,7 @@
 <script>
 import DetailModal from '@/components/DetailModal'
 import { mapActions, mapState } from 'vuex'
+import recipesTitle from '@/mixins/recipesTitle'
 export default {
     name: 'CardRecipe',
     components: {
@@ -99,7 +100,8 @@ export default {
         }
     },
     computed: {
-        ...mapState(['favorites'])
+        ...mapState(['favorites']),
+        
     },
     methods: {
         ...mapActions(['getFavorites', 'deleteFromFavorites']),
@@ -134,8 +136,8 @@ export default {
                 this.getFavorites(item)
             }
         },
-
     },
+    mixins: [recipesTitle]
 }
 </script>
 

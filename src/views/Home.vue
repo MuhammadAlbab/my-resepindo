@@ -3,8 +3,8 @@
     <section class="text-center mb-5">
       <b-row align-v="center">
         <b-col class="ml-5 text-left">
-          <h1 class="mb-3">Bingung Masak Apa?</h1>
-          <h3 class="text-muted">my-resepindo hadir menyediakan resep indonesia terbaik untukmu</h3>
+          <h2 class="mb-3">Bingung Masak Apa?</h2>
+          <h4 class="text-muted">my-resepindo hadir menyediakan kumpulan resep indonesia terbaik untukmu</h4>
         </b-col>
         <b-col>
           <b-img

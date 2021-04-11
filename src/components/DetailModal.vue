@@ -22,7 +22,7 @@
         </div>
         <div>
           <div class="mb-4 text-center">
-            <h5 class="mt-3 mb-2"><strong>{{item.title.substring(5, item.title.indexOf(','))}}</strong></h5>
+            <h5 class="mt-3 mb-2"><strong>{{theTitle(item.title)}}</strong></h5>
             <p class="mb-0">by: </p>
             <p class="mt-0">{{detailRecipe.author.user}} - {{detailRecipe.author.datePublished}}</p>
             <strong>Bahan yang dibutuhkan:</strong>
@@ -65,6 +65,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import recipesTitle from '@/mixins/recipesTitle'
 export default {
     name: 'DetailModal',
     props: ['item', 'index', 'detailModal'],
@@ -90,7 +91,8 @@ export default {
           this.isLoading = false
         }
       }
-    }
+    },
+    mixins: [recipesTitle]
 }
 </script>
 

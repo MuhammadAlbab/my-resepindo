@@ -11,27 +11,28 @@
                     md="4"
                     class="mb-3"
                 >
-                    <div>Tentang Kami</div>
-                    <div>my-resepindo hadir sebagai platform penyedia resep-resep favorite untuk keluarga indonesia</div>
+                    <h4>Tentang Kami</h4>
+                    <div class="text-muted">my-resepindo hadir sebagai platform penyedia resep-resep favorite untuk keluarga indonesia</div>
                 </b-col>
                 <b-col
                     cols="12"
                     md="4"
                     class="mb-3"
                 >
-                    <div>Hubungi Kami</div>
-                    <div>Instagram</div>
-                    <div>Facebook</div>
-                    <div>Twitter</div>
-                    <div>Email</div>
+                    <h4>Hubungi Kami</h4>
+                    <div class="text-muted">Jl. Kaliurang Km. 10, Yogyakarta</div>
+                    <div class="text-muted">support@myresepindo.id</div>
+                    <div class="text-muted">0401-326-846</div>
                 </b-col>
                 <b-col
                     cols="12"
                     md="4"
                     class="mb-3"
                 >
-                    <div>Dukung Kami</div>
-                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, hic.</div>
+                    <h4>API Source</h4>
+                    <div class="text-muted">
+                        <a href="https://github.com/tomorisakura/unofficial-masakapahariini-api" target="_blank">MasakApaHariIniAPI </a> 
+                    </div>
                 </b-col>
             </b-row>
         </b-container>
@@ -44,6 +45,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+    a {
+        color: #6c757d;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #6c757d;
+    }
 </style>
+
