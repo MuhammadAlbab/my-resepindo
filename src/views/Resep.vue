@@ -99,6 +99,7 @@ import DetailModal from '@/components/DetailModal'
         slide: 0,
         sliding: null,
         categoryPics: [
+          {pic: require('@/assets/CategoryPic/dessert.jpg')},
           {pic: require('@/assets/CategoryPic/hariraya.jpeg')},
           {pic: require('@/assets/CategoryPic/tradisional.jpeg')},
           {pic: require('@/assets/CategoryPic/makanmalam.jpg')},

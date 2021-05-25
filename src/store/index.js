@@ -69,17 +69,17 @@ export default new Vuex.Store({
     },
 
     async getDetails({commit}, payload){
-      const response = await axios.get (`${corsUrl}${baseUrl}/api/recipe/${payload}`)
+      const response = await axios.get(`${corsUrl}${baseUrl}/api/recipe/${payload}`)
       commit('setDetails', response.data.results)
     },
 
     async getCategory({commit}){
-      const response = await axios.get (`${corsUrl}${baseUrl}/api/categorys/recipes`)
+      const response = await axios.get(`${corsUrl}${baseUrl}/api/categorys/recipes`)
       commit('setCategory', response.data.results)
     },
 
     async getRecipesByCategory({commit}, payload){
-      const response = await axios.get (`${corsUrl}${baseUrl}/api/categorys/recipes/${payload}`)
+      const response = await axios.get(`${corsUrl}${baseUrl}/api/categorys/recipes/${payload}`)
       commit('setRecipesByCategory', response.data.results)
     },
 

@@ -6,7 +6,14 @@
         </b-row>
     </section>
 
-    <section>
+
+    <section v-if="recipesByCategory == undefined">
+      <b-row align-h="center">
+        <h2>Resep tidak tersedia</h2>
+      </b-row>
+    </section>
+
+    <section v-else>
         <CardRecipe 
             :items="recipesByCategory.slice(1)"
             :myTitle="'Suka'"
